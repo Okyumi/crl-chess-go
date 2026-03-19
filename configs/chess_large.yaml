@@ -1,0 +1,19 @@
+# Large-scale Chess experiment config
+experiment_name: chess_large
+env_name: chess
+n_train_games: 50000
+n_epochs: 10000
+batch_size: 1024
+embed_dim: 512
+hidden_dim: 1024
+n_blocks: 8
+encoder_type: conv
+conv_channels: 256
+dropout: 0.1
+lr: 0.0001
+gamma: 0.995
+n_negatives: 127
+n_seeds: 5
+n_policy_eval_games: 500
+run_ablations: true
+ablation_epochs: 2000
