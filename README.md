@@ -22,6 +22,18 @@ In standard GCRL, agents are conditioned on future states as goals. Board games 
 
 ## Setup
 
+### NYUAD HPC (conda env on scratch — avoids home disk quota)
+
+```bash
+cd /scratch/$USER/crl-chess-go   # keep repo on scratch
+bash scripts/setup_env.sh
+conda activate /scratch/$USER/.conda/envs/ccrl
+```
+
+SLURM jobs use the same path via `scripts/submit_slurm.sh`.
+
+### Local / other machines
+
 ```bash
 git clone https://github.com/Okyumi/crl-chess-go.git
 cd crl-chess-go

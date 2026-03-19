@@ -1,0 +1,63 @@
+ablation_embed_dims:
+- 32
+- 64
+- 128
+- 256
+- 512
+ablation_epochs: 500
+ablation_gammas:
+- 0.9
+- 0.95
+- 0.99
+- 0.995
+- 0.999
+ablation_n_blocks:
+- 1
+- 2
+- 4
+- 6
+- 8
+ablation_n_negatives:
+- 7
+- 15
+- 31
+- 63
+- 127
+- 255
+batch_size: 512
+contrastive_mode: forward
+conv_channels: 128
+data_collection: random
+device: cuda
+dropout: 0.1
+embed_dim: 256
+encoder_type: mlp
+env_kwargs: {}
+env_name: connect4
+eval_every: 100
+experiment_name: crl_chess_go
+gamma: 0.99
+grad_clip: 1.0
+hidden_dim: 512
+learnable_temp: true
+lr: 0.0003
+n_blocks: 4
+n_epochs: 2000
+n_eval_games: 500
+n_negatives: 63
+n_policy_eval_games: 200
+n_seeds: 5
+n_train_games: 10000
+output_dir: results
+policy_temperature: 0.5
+run_ablations: true
+save_every: 500
+seed: 42
+seeds:
+- 42
+- 123
+- 456
+- 789
+- 1024
+warmup_steps: 100
+weight_decay: 1.0e-05

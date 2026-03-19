@@ -41,9 +41,10 @@ module purge
 module load cuda/11.8.0
 
 # Use scratch for caches/tmp (avoid home quota)
-export XDG_CACHE_HOME=/scratch/yd2247/.cache
-export PIP_CACHE_DIR=/scratch/yd2247/.cache/pip
-export TMPDIR=/scratch/yd2247/tmp
+SCRATCH_ROOT="${SCRATCH:-/scratch/${USER:-yd2247}}"
+export XDG_CACHE_HOME="${SCRATCH_ROOT}/.cache"
+export PIP_CACHE_DIR="${SCRATCH_ROOT}/.cache/pip"
+export TMPDIR="${SCRATCH_ROOT}/tmp"
 mkdir -p "$XDG_CACHE_HOME" "$PIP_CACHE_DIR" "$TMPDIR"
 
 # Avoid user site-packages conflicts
@@ -54,11 +55,14 @@ export MKL_INTERFACE_LAYER=LP64,GNU
 module load conda-gcc/11.2.0
 eval "$(conda shell.bash hook)"
 
-# Activate conda environment
-# Option 1: Use your existing contrastive_rl env (if it has torch, numpy, matplotlib, scikit-learn, python-chess)
-# conda activate contrastive_rl
-# Option 2: Create a dedicated env (see README)
-conda activate ccrl
+# Activate conda environment (must match scripts/setup_env.sh: env lives on scratch, not ~/.conda)
+CONDA_ENV_PREFIX="${SCRATCH_ROOT}/.conda/envs/ccrl"
+if [[ ! -d "$CONDA_ENV_PREFIX" ]]; then
+  echo "ERROR: Conda env not found at $CONDA_ENV_PREFIX"
+  echo "Create it on scratch (interactive login, not sbatch): bash scripts/setup_env.sh"
+  exit 1
+fi
+conda activate "$CONDA_ENV_PREFIX"
 
 # Ensure conda Python is first
 export PATH="${CONDA_PREFIX}/bin:$PATH"
@@ -68,7 +72,7 @@ export LD_LIBRARY_PATH="${CONDA_PREFIX}/lib:${LD_LIBRARY_PATH:-}"
 [ -n "${CUDA_HOME:-}" ] && [ -d "${CUDA_HOME}/lib64" ] && export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CUDA_HOME}/lib64"
 
 # --- Run ---
-WORK_DIR=/scratch/yd2247/crl-chess-go
+WORK_DIR="${SCRATCH_ROOT}/crl-chess-go"
 cd "$WORK_DIR"
 mkdir -p logs results
 
