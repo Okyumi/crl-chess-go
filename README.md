@@ -1,14 +1,14 @@
 # Contrastive RL for Board Games
 
-Experimental codebase investigating **Contrastive Reinforcement Learning (CRL)** in discrete board game settings (Chess, Go, Connect-4). Tests whether the InfoNCE-based goal-conditioned RL framework ([Eysenbach et al., NeurIPS 2022](https://arxiv.org/abs/2206.07568)) can learn useful state representations and policies in environments where the "goal" is a degenerate binary signal (win/lose).
+Experimental codebase investigating **Contrastive Reinforcement Learning (CRL)** in discrete board game settings (Chess, Go, Connect-4). Tests whether the InfoNCE-based goal-conditioned RL framework can learn useful state representations and policies in environments where the "goal" is a degenerate binary signal (win/lose).
 
 ## Motivation
 
-In standard GCRL, agents are conditioned on future states as goals. Board games pose a unique challenge: the objective is to win, but winning can arise from enormously many board configurations. This project investigates (from the Eysenbach correspondence):
+In standard GCRL, agents are conditioned on future states as goals. Board games pose a unique challenge: the objective is to win, but winning can arise from enormously many board configurations. This project investigates:
 
-1. **Can CRL learn environment structure** — the "map" of how moves lead to future positions — even when goals are binary?
-2. **Forward vs. backward contrastive sampling** — does sampling backward in time (Eysenbach's suggestion) improve representations?
-3. **CRL vs. MC value classification** — the email-proposed P(win|s) classifier is equivalent to MC regression with cross-entropy. Does the contrastive objective learn richer representations?
+1. **Can CRL learn environment structure** - the "map" of how moves lead to future positions — even when goals are binary?
+2. **Forward vs. backward contrastive sampling** — does sampling backward in time improve representations?
+3. **CRL vs. MC value classification** — the P(win|s) classifier is equivalent to MC regression with cross-entropy. Does the contrastive objective learn richer representations?
 4. **When does CRL collapse toward standard RL** in these settings, and when does it retain structural advantages?
 
 ## Environments
