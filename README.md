@@ -1,6 +1,6 @@
 # Contrastive RL for Board Games
 
-Experimental codebase investigating **Contrastive Reinforcement Learning (CRL)** in discrete board game settings (Chess, Go, Connect-4). Tests whether the InfoNCE-based goal-conditioned RL framework can learn useful state representations and policies in environments where the "goal" is a degenerate binary signal (win/lose).
+Experimental codebase investigating **Contrastive Reinforcement Learning (CRL)** in discrete board game settings (Chess, Go, Connect-4). Tests whether the InfoNCE-based goal-conditioned RL framework can learn useful state representations and policies in environments where the "goal" is a degenerate binary signal.
 
 ## Motivation
 
@@ -150,7 +150,7 @@ results/<env_name>/
 ├── environments.py        # FullChessEnv, GoEnv, ConnectFourEnv
 ├── models.py              # ContrastiveCritic, WinPredictorMC, ValueNet, PolicyNet
 ├── training.py            # TrajectoryBuffer, InfoNCE losses, trainer
-├── run_experiments.py     # Main experiment runner (single env)
+├── run_experiments.py     # Main experiment runner 
 ├── run_all.py             # Run all environments
 ├── requirements.txt
 ├── README.md
